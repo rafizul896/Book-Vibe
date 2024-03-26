@@ -1,13 +1,6 @@
-// const PagesToRead = () => {
-//     return (
-//         <div>
-
-//         </div>
-//     );
-// };
-
-// export default PagesToRead;
+import { useEffect, useState } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
+import { getReadBooks } from '../utilits';
 
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 
@@ -65,16 +58,21 @@ const getPath = (x, y, width, height) => {
 
 const TriangleBar = (props) => {
     const { fill, x, y, width, height } = props;
-
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
 };
 
 const PagesToRead = () => {
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+        const storedReadBooks = getReadBooks();
+        setBooks(storedReadBooks);
+    }, [])
     return (
         <BarChart
-            width={500}
-            height={300}
-            data={data}
+            width={1000}
+            height={550}
+            data={books}
             margin={{
                 top: 20,
                 right: 30,
@@ -83,9 +81,9 @@ const PagesToRead = () => {
             }}
         >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Bar dataKey="uv" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+            <XAxis dataKey="bookName" />
+            <YAxis dataKey="totalPages"/>
+            <Bar dataKey="totalPages" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
                 {data.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={colors[index % 20]} />
                 ))}

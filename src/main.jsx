@@ -10,10 +10,8 @@ import Home from './pages/Home.jsx';
 import ListedBooks from './pages/ListedBooks.jsx';
 import BookDetails from './pages/BookDetails.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ReadBooks from './components/ReadBooks.jsx';
 import WishlistBooks from './components/WishlistBooks.jsx';
 import PagesToRead from './pages/PagesToRead.jsx';
 
@@ -34,7 +32,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "readbooks",
-            element: <ReadBooks></ReadBooks>
+            // element: <ReadBooks></ReadBooks>
           },
           {
             path: "wishlistbooks",

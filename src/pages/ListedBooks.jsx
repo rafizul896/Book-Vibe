@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import ReadBooks from "../components/ReadBooks";
 
 const ListedBooks = () => {
     const [appliedJobs, setAppliedJobs] = useState([]);
@@ -27,7 +28,6 @@ const ListedBooks = () => {
                 <details className="dropdown">
                     <summary className="m-1 p-3 rounded-lg bg-[#23BE0A] text-white">open or close</summary>
                     <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                        <li onClick={() => handleJobsFilter('all')}><a>All</a></li>
                         <li onClick={() => handleJobsFilter('remote')}><a>Rating</a></li>
                         <li onClick={() => handleJobsFilter('onsite')}><a>Number of Pages</a></li>
                         <li onClick={() => handleJobsFilter('onsite')}><a>Published Year</a></li>
@@ -50,6 +50,7 @@ const ListedBooks = () => {
                 </Link>
             </div>
             <Outlet></Outlet>
+            <div className="mb-10"><ReadBooks></ReadBooks></div>
         </div>
     );
 };
