@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
+import PropTypes from 'prop-types';
 
 const Book = ({ book }) => {
     const { bookId,category, rating, bookName, tags, author, image } = book;
@@ -29,5 +30,9 @@ const Book = ({ book }) => {
 
     );
 };
+
+Book.propTypes = {
+    book: PropTypes.object 
+}
 
 export default Book;
