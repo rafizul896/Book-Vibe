@@ -1,17 +1,23 @@
 import { Link, useLoaderData, useParams } from "react-router-dom";
+import { readBooks } from "../utilits";
 
 const BookDetails = () => {
     const books = useLoaderData();
     const { id } = useParams();
     const book = books.find(book => book.bookId === id)
     const { image, bookName, author, review, tags, category, publisher, totalPages, yearOfPublishing, rating } = book;
+    // console.log(book)
+    const handleReadBooks = (book) => {
+        console.log(book)
+        readBooks(book)
+    }
 
     return (
         <div className="flex flex-col lg:flex-row items-center gap-10">
-            <div className="w-1/2 bg-[#1313130D] rounded-2xl">
-                <img className="w-[100%] p-20" src={image} alt="" />
+            <div className="w-1/2 bg-[#1313130D] rounded-2xl ">
+                <img className="w-[100%] px-20 py-10" src={image} alt="" />
             </div>
-            <div className="w-1/2 py-16 space-y-4">
+            <div className="w-1/2 py-8 space-y-4">
                 <article className="space-y-4">
                     <div className="space-y-6">
                         <h1 className="text-4xl font-bold md:tracking-tight md:text-4xl">{bookName}</h1>
@@ -53,7 +59,7 @@ const BookDetails = () => {
                     </div>
                 </div>
                 <div className="flex gap-5">
-                    <Link className="btn px-5 hover:bg-white text-black border-2 border-[#1313134D] hover:border-[#23BE0A] hover:text-[#23BE0A]">Read</Link>
+                    <button onClick={()=>handleReadBooks(book)} className="btn px-5 hover:bg-white text-black border-2 border-[#1313134D] hover:border-[#23BE0A] hover:text-[#23BE0A]">Read</button>
                     <Link className="btn bg-[#59C6D2] text-white hover:text-black hover:border-2 hover:border-[#59C6D2] hover:bg-white">Wishlist</Link>
                 </div>
             </div>
