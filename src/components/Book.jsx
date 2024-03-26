@@ -1,22 +1,31 @@
 import { Link } from "react-router-dom";
+import { CiStar } from "react-icons/ci";
 
-const Book = ({book}) => {
-    console.log(book)
+const Book = ({ book }) => {
+    const { bookId,category, rating, bookName, tags, author, image } = book;
     return (
-        <Link className="flex border flex-col dark:bg-gray-50">
-				<a rel="noopener noreferrer" href="#" aria-label="Te nulla oportere reprimique his dolorum">
-					<img alt="" className="object-cover w-full h-52 dark:bg-gray-500" src="https://source.unsplash.com/200x200/?fashion?2" />
-				</a>
-				<div className="flex flex-col flex-1 p-6">
-					<a rel="noopener noreferrer" href="#" aria-label="Te nulla oportere reprimique his dolorum">Young Adult</a>
-					<a rel="noopener noreferrer" href="#" className="text-xs tracking-wider uppercase hover:underline dark:text-violet-600">Identity</a>
-					<h3 className="flex-1 py-2 text-lg font-semibold leading-snug">Te nulla oportere reprimique his dolorum</h3>
-					<div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-600">
-						<span>June 2, 2020</span>
-						<span>2.2K views</span>
-					</div>
-				</div>
-			</Link>
+        <Link to={`/book/${bookId}`} className="flex border flex-col p-6 rounded-2xl">
+            <div className="bg-[#F3F3F3] flex justify-center items-center p-10 rounded-2xl">
+                <img alt="" className="h-52" src={image} />
+            </div>
+            <div className="flex flex-col flex-1">
+                <div className="list-none mt-5 flex justify-between text-[#23BE0A] font-medium">
+                    {
+                        tags.map((tag, idx) => <li key={idx}>{tag}</li>)
+                    }
+                </div>
+                <h2 className="flex-1 py-3 text-2xl font-semibold leading-snug">{bookName}</h2>
+                <h3 className="font-medium">By : {author}</h3>
+                <div className="border border-dashed mt-3"></div>
+                <div className="flex flex-wrap justify-between pt-3 space-x-2 text-base dark:text-gray-600">
+                    <span >{category}</span>
+                    <div className="flex items-center gap-1">
+                        <span>{rating}</span>
+                        <CiStar />
+                    </div>
+                </div>
+            </div>
+        </Link>
 
     );
 };
