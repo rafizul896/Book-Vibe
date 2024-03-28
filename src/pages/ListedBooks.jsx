@@ -7,7 +7,7 @@ import ReadBook from "../components/ReadBook";
 const ListedBooks = () => {
     const [tabIndex, setTabIndex] = useState(0)
     const [books, setBooks] = useState([]);
-    const [sortedData,setSortedData] = useState(getReadBooks)
+    const [sortedData, setSortedData] = useState(getReadBooks)
 
     useEffect(() => {
         const storedReadBooks = getReadBooks();
@@ -55,12 +55,12 @@ const ListedBooks = () => {
                     <span>Wishlist Books</span>
                 </Link>
             </div>
-            <div className="flex flex-col gap-5 mt-5">
+            <Outlet></Outlet>
+            {/* <div className="flex flex-col gap-5 mt-5">
                 {
                     sortedData.map((book,idx) => <ReadBook key={idx} book={book}></ReadBook>)
                 }
-            </div>
-                <Outlet></Outlet>
+            </div> */}
         </div>
     );
 };

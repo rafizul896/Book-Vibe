@@ -10,7 +10,7 @@ const Book = ({ book }) => {
                 <img alt="" className="h-52" src={image} />
             </div>
             <div className="flex flex-col flex-1">
-                <div className="list-none mt-5 flex justify-between text-[#23BE0A] font-medium">
+                <div className="list-none mt-5 flex flex-col md:flex-row text-center justify-between text-[#23BE0A] font-medium">
                     {
                         tags.map((tag, idx) => <li key={idx}>{tag}</li>)
                     }
