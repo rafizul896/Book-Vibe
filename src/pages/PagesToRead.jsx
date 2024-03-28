@@ -69,26 +69,28 @@ const PagesToRead = () => {
         setBooks(storedReadBooks);
     }, [])
     return (
-        <BarChart
-            width={1000}
-            height={550}
-            data={books}
-            margin={{
-                top: 20,
-                right: 30,
-                left: 20,
-                bottom: 5,
-            }}
-        >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="bookName" />
-            <YAxis dataKey="totalPages"/>
-            <Bar dataKey="totalPages" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
-                {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-                ))}
-            </Bar>
-        </BarChart>
+        <div className='verflow-x-auto overflow-y-hidden'>
+            <BarChart
+                width={1000}
+                height={550}
+                data={books}
+                margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                }}
+            >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="bookName" />
+                <YAxis dataKey="totalPages" />
+                <Bar dataKey="totalPages" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                    {data.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                    ))}
+                </Bar>
+            </BarChart>
+        </div>
     );
 }
 

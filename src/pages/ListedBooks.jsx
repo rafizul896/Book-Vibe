@@ -1,36 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import ReadBooks from "../components/ReadBooks";
+import { getReadBooks } from "../utilits";
+import ReadBook from "../components/ReadBook";
 
 const ListedBooks = () => {
-    const [appliedJobs, setAppliedJobs] = useState([]);
-    const [displayJobs, setDisplayJobs] = useState([]);
     const [tabIndex, setTabIndex] = useState(0)
+    const [books, setBooks] = useState([]);
+    const [sortedData,setSortedData] = useState(getReadBooks)
 
-    const handleJobsFilter = (filter) => {
-        if (filter === 'all') {
-            setDisplayJobs(appliedJobs);
+    useEffect(() => {
+        const storedReadBooks = getReadBooks();
+        setBooks(storedReadBooks);
+    }, [])
+    // console.log(books)
+    const handleBooksFilter = (filter) => {
+        if (filter == 'rating') {
+            const sortedRating = books.sort((b1, b2) => b1.rating - b2.rating)
+            setSortedData(sortedRating)
+            console.log(sortedRating)
+            // console.log('clicked',books)
         }
-        else if (filter === 'remote') {
-            const remoteJobs = appliedJobs.filter(job => job.remote_or_onsite === 'Remote');
-            setDisplayJobs(remoteJobs)
+        else if (filter === 'pages') {
+            const sortedPages = books.sort((b1, b2) => b1.totalPages - b2.totalPages)
+            setSortedData(sortedPages)
+            console.log('line = 25',books)
         }
-        else if (filter === 'onsite') {
-            const onsiteJobs = appliedJobs.filter(job => job.remote_or_onsite === 'Onsite');
-            setDisplayJobs(onsiteJobs)
+        else if (filter === 'year') {
+            const sortedYear = books.sort((b1, b2) => b1.yearOfPublishing - b2.yearOfPublishing)
+            setSortedData(sortedYear)
+            console.log("line 31",books)
         }
     }
-
+    console.log("line=33",books)
     return (
         <div>
             <h1 className="text-2xl font-bold text-center bg-[#1313130D] py-5">Books</h1>
             <div className="flex justify-center mt-3">
                 <details className="dropdown">
-                    <summary className="m-1 p-3 rounded-lg bg-[#23BE0A] text-white">open or close</summary>
+                    <summary className="m-1 p-3 rounded-lg bg-[#23BE0A] text-white">Sort By</summary>
                     <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                        <li onClick={() => handleJobsFilter('remote')}><a>Rating</a></li>
-                        <li onClick={() => handleJobsFilter('onsite')}><a>Number of Pages</a></li>
-                        <li onClick={() => handleJobsFilter('onsite')}><a>Published Year</a></li>
+                        <li onClick={() => handleBooksFilter('rating')}><a>Rating</a></li>
+                        <li onClick={() => handleBooksFilter('pages')}><a>Number of Pages</a></li>
+                        <li onClick={() => handleBooksFilter('year')}><a>Published Year</a></li>
                     </ul>
                 </details>
             </div>
@@ -49,8 +60,14 @@ const ListedBooks = () => {
                     <span>Wishlist Books</span>
                 </Link>
             </div>
-            <Outlet></Outlet>
-            <div className="mb-10"><ReadBooks></ReadBooks></div>
+            {/* <Outlet></Outlet> */}
+            <div className="flex flex-col gap-5 mt-5">
+                {
+
+                    sortedData.map((book,idx) => <ReadBook key={idx} book={book}></ReadBook>)
+                }
+            </div>
+            {/* <div className="mb-10"><ReadBooks ></ReadBooks></div> */}
         </div>
     );
 };

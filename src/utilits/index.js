@@ -27,6 +27,7 @@ const readBooks = book => {
     localStorage.setItem('books', JSON.stringify(books))
     toast.success('Books Added to Read List')
 }
+
 // wishlist books
 const wishListBooks = book => {
     let books = getWishBooks();
