@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getReadBooks } from "../utilits";
-import Shorted from "../components/Shorted";
 import ReadBook from "../components/ReadBook";
 
 
@@ -56,13 +55,12 @@ const ListedBooks = () => {
                     <span>Wishlist Books</span>
                 </Link>
             </div>
-            <Outlet></Outlet>
             <div className="flex flex-col gap-5 mt-5">
-                
-                {/* {
+                {
                     sortedData.map((book,idx) => <ReadBook key={idx} book={book}></ReadBook>)
-                } */}
+                }
             </div>
+                <Outlet></Outlet>
         </div>
     );
 };
