@@ -4,6 +4,7 @@ import WishBook from "./WishBook";
 
 const WishlistBooks = () => {
     const [wishBooks, setWishBooks] = useState([]);
+    
     useEffect(() => {
         const storedWishBooks = getWishBooks();
         setWishBooks(storedWishBooks)

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getReadBooks } from "../utilits";
+import Shorted from "../components/Shorted";
 import ReadBook from "../components/ReadBook";
+
 
 const ListedBooks = () => {
     const [tabIndex, setTabIndex] = useState(0)
@@ -12,26 +14,20 @@ const ListedBooks = () => {
         const storedReadBooks = getReadBooks();
         setBooks(storedReadBooks);
     }, [])
-    // console.log(books)
     const handleBooksFilter = (filter) => {
         if (filter == 'rating') {
             const sortedRating = books.sort((b1, b2) => b1.rating - b2.rating)
             setSortedData(sortedRating)
-            console.log(sortedRating)
-            // console.log('clicked',books)
         }
         else if (filter === 'pages') {
             const sortedPages = books.sort((b1, b2) => b1.totalPages - b2.totalPages)
             setSortedData(sortedPages)
-            console.log('line = 25',books)
         }
         else if (filter === 'year') {
             const sortedYear = books.sort((b1, b2) => b1.yearOfPublishing - b2.yearOfPublishing)
             setSortedData(sortedYear)
-            console.log("line 31",books)
         }
     }
-    console.log("line=33",books)
     return (
         <div>
             <h1 className="text-2xl font-bold text-center bg-[#1313130D] py-5">Books</h1>
@@ -60,14 +56,13 @@ const ListedBooks = () => {
                     <span>Wishlist Books</span>
                 </Link>
             </div>
-            {/* <Outlet></Outlet> */}
+            <Outlet></Outlet>
             <div className="flex flex-col gap-5 mt-5">
-                {
-
+                
+                {/* {
                     sortedData.map((book,idx) => <ReadBook key={idx} book={book}></ReadBook>)
-                }
+                } */}
             </div>
-            {/* <div className="mb-10"><ReadBooks ></ReadBooks></div> */}
         </div>
     );
 };
