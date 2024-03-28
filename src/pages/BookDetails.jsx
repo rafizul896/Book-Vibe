@@ -18,12 +18,12 @@ const BookDetails = () => {
     return (
         <div className="flex flex-col lg:flex-row items-center gap-10">
             <div className="w-1/2 bg-[#1313130D] rounded-2xl ">
-                <img className="w-[100%] px-20 py-10" src={image} alt="" />
+                <img className="w-[100%] md:px-20 py-10" src={image} alt="" />
             </div>
-            <div className="w-1/2 py-8 space-y-4">
+            <div className="md:w-1/2 py-8 space-y-4">
                 <article className="space-y-4">
                     <div className="space-y-6">
-                        <h1 className="text-4xl font-bold md:tracking-tight md:text-4xl">{bookName}</h1>
+                        <h1 className="text-2xl font-bold md:tracking-tight md:text-4xl">{bookName}</h1>
                         <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center dark:text-gray-600">
                             <p className="flex-shrink-0 mt-3 text-sm md:mt-0">By : {author}</p>
                         </div>
